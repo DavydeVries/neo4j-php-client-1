@@ -9,6 +9,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            args:
+                - WITH_XDEBUG=true
         networks:
             - neo4j
         volumes:
