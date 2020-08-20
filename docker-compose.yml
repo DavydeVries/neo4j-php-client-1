@@ -15,19 +15,28 @@ services:
             - .:/opt/project
         depends_on:
             - neo4j
-        restart: always
         expose:
             - 9000
         environment:
             - NEO4J_USER=neo4j
             - NEO4J_PASSWORD=test
-            - NEO4J_HOST=neo4j
+            - NEO4J_HOST=neo4j-new
             - NEO4J_SCHEMA=http
             - NEO4J_PORT=7474
     neo4j:
         networks:
             - neo4j
         image: neo4j:3.5
+        expose:
+            - 7474
+            - 7687
+            - 6362
+        environment:
+            - NEO4J_AUTH=neo4j/test
+    neo4j-new:
+        networks:
+            - neo4j
+        image: neo4j:4.1
         ports:
             - "7474:7474"
             - "7687:7687"
