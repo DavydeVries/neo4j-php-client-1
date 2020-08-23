@@ -16,16 +16,17 @@ services:
         volumes:
             - .:/opt/project
         depends_on:
-            - neo4j
+            - neo4j-legacy
+            - neo4j-new
         expose:
             - 9000
         environment:
             - NEO4J_USER=neo4j
             - NEO4J_PASSWORD=test
-            - NEO4J_HOST=neo4j-new
             - NEO4J_SCHEMA=http
             - NEO4J_PORT=7474
-    neo4j:
+            - NEO4J_DATABASE=neo4j
+    neo4j-legacy:
         networks:
             - neo4j
         image: neo4j:3.5
