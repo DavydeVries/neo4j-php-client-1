@@ -8,4 +8,5 @@ tests/_reports
 tests/database_settings.yml
 vendor/
 phpunit.xml
+.phpunit.result.cache
 .idea/
