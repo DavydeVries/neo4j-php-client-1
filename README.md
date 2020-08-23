@@ -41,7 +41,9 @@ Neo4j is a transactional, open-source graph database. A graph database manages d
 | Transactions         |  Yes           |
 | High Availability    |  Yes           |
 | Embedded JVM support |  No            |
-| Binary Protocol      |  Yes           |
+| Binary Protocol      |  Yes*          |
+
+(*) Binary protocol only available up until version 3.5
 
 ### Requirements
 
