@@ -30,6 +30,7 @@ Neo4j is a transactional, open-source graph database. A graph database manages d
 | 2.2         |   Yes       |
 | 2.3         |   Yes       |
 | 3.0 +       |   Yes       |
+| 4.0 +       |   Yes       |
 
 #### Neo4j Feature Support
 
@@ -44,7 +45,7 @@ Neo4j is a transactional, open-source graph database. A graph database manages d
 
 ### Requirements
 
-* PHP >= 5.6
+* PHP >= 7.4
 * ext-bcmath
 * ext-mbstring
 * A Neo4j database (minimum version 2.2.6)
@@ -477,7 +478,7 @@ $client = ClientBuilder::create()
 
 The timeout by default is 5 seconds.
 
-This feature is deprecated and will be removed in version 5. See Http client settings below. 
+This feature is deprecated and will be removed in version 5. See Http client settings below.
 
 ### TLS
 
