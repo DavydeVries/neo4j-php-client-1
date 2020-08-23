@@ -13,6 +13,7 @@ namespace GraphAware\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Driver\ConfigInterface;
+use GraphAware\Common\Driver\PipelineInterface;
 use GraphAware\Common\Driver\SessionInterface;
 use GraphAware\Common\Transaction\TransactionInterface;
 use GraphAware\Neo4j\Client\Exception\Neo4jException;
@@ -61,7 +62,6 @@ class Session implements SessionInterface
     /**
      * @param string                  $uri
      * @param GuzzleClient|HttpClient $httpClient
-     * @param ConfigInterface         $config
      */
     public function __construct($uri, $httpClient, ConfigInterface $config)
     {
@@ -116,7 +116,6 @@ class Session implements SessionInterface
 
     /**
      * @param string|null $query
-     * @param array       $parameters
      * @param string|null $tag
      *
      * @return Pipeline
@@ -139,7 +138,7 @@ class Session implements SessionInterface
      *
      * @return \GraphAware\Common\Result\ResultCollection
      */
-    public function flush(Pipeline $pipeline)
+    public function flush(PipelineInterface $pipeline)
     {
         $request = $this->prepareRequest($pipeline);
         try {
@@ -168,8 +167,6 @@ class Session implements SessionInterface
     }
 
     /**
-     * @param Pipeline $pipeline
-     *
      * @return RequestInterface
      */
     public function prepareRequest(Pipeline $pipeline)
@@ -240,8 +237,7 @@ class Session implements SessionInterface
     }
 
     /**
-     * @param int   $transactionId
-     * @param array $statementsStack
+     * @param int $transactionId
      *
      * @throws Neo4jException
      *

@@ -18,13 +18,15 @@ use GraphAware\Neo4j\Client\Connection\Connection;
 use GraphAware\Neo4j\Client\Connection\ConnectionManager;
 use GraphAware\Neo4j\Client\HttpDriver\Driver as HttpDriver;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+use Prophecy\Prophet;
 
 /**
  * Class ClientSetupIntegrationTest.
  *
  * @group setup
  */
-class ClientSetupIntegrationTest extends \PHPUnit_Framework_TestCase
+class ClientSetupIntegrationTest extends TestCase
 {
     public function testClientSetupWithOneConnection()
     {
@@ -104,7 +106,7 @@ class ClientSetupIntegrationTest extends \PHPUnit_Framework_TestCase
 
     public function testExceptionIsThrownWhenMasterAliasDoesntExist()
     {
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $client = ClientBuilder::create()
             ->addConnection('default', 'http://localhost:7474')
             ->addConnection('conn2', 'http://localhost:7575')
@@ -127,7 +129,7 @@ class ClientSetupIntegrationTest extends \PHPUnit_Framework_TestCase
             );
         }
 
-        $connectionManager = $this->prophesize(ConnectionManager::class);
+        $connectionManager = (new Prophet())->prophesize(ConnectionManager::class);
         $conn = new Connection('default', $httpUri, null, 5);
         $connectionManager->getMasterConnection()->willReturn($conn);
         $connectionManager->getMasterConnection()->shouldBeCalled();

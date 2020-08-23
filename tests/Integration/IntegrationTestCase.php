@@ -11,23 +11,27 @@
 
 namespace GraphAware\Neo4j\Client\Tests\Integration;
 
+use GraphAware\Common\Result\Result;
 use GraphAware\Neo4j\Client\ClientBuilder;
+use PHPUnit\Framework\TestCase;
 
-class IntegrationTestCase extends \PHPUnit_Framework_TestCase
+class IntegrationTestCase extends TestCase
 {
     /**
      * @var \GraphAware\Neo4j\Client\Client
      */
     protected $client;
 
-    public function setUp()
+    public function setUp(): void
     {
         $connections = array_merge($this->getConnections(), $this->getAdditionalConnections());
 
-        $this->client = ClientBuilder::create()
-            ->addConnection('http', $connections['http'])
-            ->addConnection('bolt', $connections['bolt'])
-            ->build();
+        $builder = ClientBuilder::create()->addConnection('http', $connections['http']);
+        if (!$this->isV4OrUp()) {
+            $builder->addConnection('bolt', $connections['bolt']);
+        }
+
+        $this->client = $builder->build();
     }
 
     protected function getConnections()
@@ -60,6 +64,18 @@ class IntegrationTestCase extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    protected function runQuery(string $query, array $params = [], $tag = null, $connectionAlias = null): Result
+    {
+        $query = $this->modernizeQueryIfNeeded($query);
+
+        return $this->client->run($query, $params, $tag, $connectionAlias);
+    }
+
+    protected function isV4OrUp(): bool
+    {
+        return ((int) explode('.', getenv('NEO4J_VERSION'), 2)[0]) >= 4;
+    }
+
     protected function getAdditionalConnections()
     {
         return [];
@@ -73,5 +89,20 @@ class IntegrationTestCase extends \PHPUnit_Framework_TestCase
     public function emptyDb()
     {
         $this->client->run('MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE r,n', null, null);
+    }
+
+    /**
+     * @param string $query
+     * @return string|string[]|null
+     */
+    protected function modernizeQueryIfNeeded(string $query)
+    {
+        if ($this->isV4OrUP()) {
+            // Change the parameter syntax to new version ({param} to $param)
+            $query = preg_replace_callback('/{\w+}/', static function (array $match) {
+                return '$' . mb_substr($match[0], 1, -1);
+            }, $query);
+        }
+        return $query;
     }
 }

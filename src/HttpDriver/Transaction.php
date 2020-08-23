@@ -12,6 +12,7 @@
 namespace GraphAware\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Cypher\Statement;
+use GraphAware\Common\Driver\SessionInterface;
 use GraphAware\Common\Transaction\TransactionInterface;
 use GraphAware\Neo4j\Client\Exception\Neo4jException;
 use GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface;
@@ -27,7 +28,7 @@ class Transaction implements TransactionInterface
     protected $state;
 
     /**
-     * @var Session
+     * @var SessionInterface
      */
     protected $session;
 
@@ -45,10 +46,7 @@ class Transaction implements TransactionInterface
 
     protected $pending = [];
 
-    /**
-     * @param Session $session
-     */
-    public function __construct(Session $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
         $this->session->transaction = $this;

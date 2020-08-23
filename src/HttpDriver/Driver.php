@@ -14,7 +14,14 @@ namespace GraphAware\Neo4j\Client\HttpDriver;
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Driver\ConfigInterface;
 use GraphAware\Common\Driver\DriverInterface;
+use GraphAware\Common\Driver\SessionInterface;
+use GraphAware\Neo4j\Client\Formatter\ResponseFormatter;
 use Http\Adapter\Guzzle6\Client;
+use Http\Client\Exception;
+use Http\Client\HttpClient;
+use Http\Message\RequestFactory;
+use JsonException;
+use RuntimeException;
 
 class Driver implements DriverInterface
 {
@@ -30,6 +37,9 @@ class Driver implements DriverInterface
      */
     protected $config;
 
+    private ?string $decidedVersion = null;
+    private ?string $transaction = null;
+
     /**
      * @param string            $uri
      * @param BaseConfiguration $config
@@ -37,7 +47,7 @@ class Driver implements DriverInterface
     public function __construct($uri, ConfigInterface $config = null)
     {
         if (null !== $config && !$config instanceof BaseConfiguration) {
-            throw new \RuntimeException(sprintf('Second argument to "%s" must be null or "%s"', __CLASS__, BaseConfiguration::class));
+            throw new RuntimeException(sprintf('Second argument to "%s" must be null or "%s"', __CLASS__, BaseConfiguration::class));
         }
 
         $this->uri = $uri;
@@ -45,11 +55,32 @@ class Driver implements DriverInterface
     }
 
     /**
-     * @return Session
+     * @throws Exception
+     * @throws JsonException
      */
-    public function session()
+    public function session(): SessionInterface
     {
-        return new Session($this->uri, $this->getHttpClient(), $this->config);
+        $client = $this->getHttpClient();
+        /** @var RequestFactory $factory */
+        $factory = $this->config->getValue('request_factory');
+
+        if (null === $this->decidedVersion) {
+            $version = $this->discovery($client, $factory);
+            $this->decidedVersion = $version['neo4j_version'] ?? '3.5';
+            $this->transaction = str_replace('{databaseName}', getenv('NEO4J_DATABASE'), $version['transaction'] ?? '');
+        }
+
+        if ($this->isV4OrUp($this->decidedVersion)) {
+            return new SessionApi4(
+                new ResponseFormatter(),
+                $this->config->getValue('request_factory'),
+                $client,
+                $this->transaction,
+                'Basic '.base64_encode(getenv('NEO4J_USER').':'.getenv('NEO4J_PASSWORD'))
+            );
+        }
+
+        return new Session($this->uri, $client, $this->config);
     }
 
     /**
@@ -61,8 +92,7 @@ class Driver implements DriverInterface
     }
 
     /**
-     *
-     * @return \Http\Client\HttpClient
+     * @return HttpClient
      */
     private function getHttpClient()
     {
@@ -85,5 +115,20 @@ class Driver implements DriverInterface
         $options['curl'][75] = true;
 
         return Client::createWithConfig($options);
+    }
+
+    /**
+     * @throws Exception|JsonException
+     */
+    private function discovery(HttpClient $client, RequestFactory $factory): array
+    {
+        $response = $client->sendRequest($factory->createRequest('GET', $this->uri));
+
+        return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    private function isV4OrUp(string $version): bool
+    {
+        return (int) (explode('.', $version, 2)[0]) >= 4;
     }
 }

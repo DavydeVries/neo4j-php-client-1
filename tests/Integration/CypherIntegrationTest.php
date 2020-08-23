@@ -20,7 +20,7 @@ use GraphAware\Neo4j\Client\Formatter\Type\Relationship as HttpRelationship;
 
 class CypherIntegrationTest extends IntegrationTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->emptyDb();
@@ -32,18 +32,22 @@ class CypherIntegrationTest extends IntegrationTestCase
         $record1 = $this->client->run($query, [], null, 'http')->firstRecord();
         $this->assertInstanceOf(Node::class, $record1->get('n'));
         $this->assertInstanceOf(HttpNode::class, $record1->get('n'));
-        $record2 = $this->client->run($query, [], null, 'bolt')->firstRecord();
-        $this->assertInstanceOf(Node::class, $record2->get('n'));
-        $this->assertInstanceOf(BoltNode::class, $record2->get('n'));
+        if (!$this->isV4OrUp()) {
+            $record2 = $this->client->run($query, [], null, 'bolt')->firstRecord();
+            $this->assertInstanceOf(Node::class, $record2->get('n'));
+            $this->assertInstanceOf(BoltNode::class, $record2->get('n'));
+        }
     }
 
     public function testRelationshipIsReturned()
     {
         $query = 'CREATE (a)-[r:RELATES]->(b) RETURN a, r, b';
         $record1 = $this->client->run($query, [], null, 'http')->firstRecord();
-        $record2 = $this->client->run($query, [], null, 'bolt')->firstRecord();
         $this->assertInstanceOf(HttpRelationship::class, $record1->get('r'));
-        $this->assertInstanceOf(BoltRelationship::class, $record2->get('r'));
+        if (!$this->isV4OrUp()) {
+            $record2 = $this->client->run($query, [], null, 'bolt')->firstRecord();
+            $this->assertInstanceOf(BoltRelationship::class, $record2->get('r'));
+        }
     }
 
     /**
@@ -53,15 +57,17 @@ class CypherIntegrationTest extends IntegrationTestCase
     {
         $query = 'CREATE p=(a:Cool)-[:RELATES]->(b:NotSoCool) RETURN p';
         $record1 = $this->client->run($query, [], null, 'http')->firstRecord();
-        $record2 = $this->client->run($query, [], null, 'bolt')->firstRecord();
         $this->assertInstanceOf(Path::class, $record1->get('p'));
-        $this->assertInstanceOf(Path::class, $record2->get('p'));
+
+        if (!$this->isV4OrUp()) {
+            $record2 = $this->client->run($query, [], null, 'bolt')->firstRecord();
+            $this->assertInstanceOf(Path::class, $record2->get('p'));
+        }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testExceptionIsThrownOnEmptyStatement() {
+    public function testExceptionIsThrownOnEmptyStatement(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
         $query = '';
         $this->client->run($query);
     }

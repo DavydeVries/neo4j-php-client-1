@@ -25,7 +25,7 @@ class StatementParametersTest extends IntegrationTestCase
         SET r += {fields} RETURN id(r) as id';
 
         $params = ['a' => 30, 'b' => 31, 'fields' => []];
-        $result = $this->client->run($query, $params, null, 'http');
+        $result = $this->runQuery($query, $params, null, 'http');
         $this->assertTrue(is_numeric($result->firstRecord()->get('id')));
     }
 
@@ -34,6 +34,8 @@ class StatementParametersTest extends IntegrationTestCase
         $query = 'CREATE (a), (b)
         MERGE (a)-[r:RELATES]->(b)
         SET r += {fields} RETURN id(r) as id';
+
+        $query = $this->modernizeQueryIfNeeded($query);
 
         $params = ['a' => 30, 'b' => 31, 'fields' => []];
         $tx = $this->client->transaction('http');

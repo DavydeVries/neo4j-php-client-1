@@ -2,15 +2,15 @@
 <phpunit bootstrap="./vendor/autoload.php" colors="true" verbose="true"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
-         beStrictAboutTestsThatDoNotTestAnything="false"
+        beStrictAboutTestsThatDoNotTestAnything="false"
 >
     <testsuites>
-        <testsuite name="GraphAware Neo4j PHP Client Test Suite - Legacy">
+        <testsuite name="GraphAware Neo4j PHP Client Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <php>
-        <env name="NEO4J_HOST" value="neo4j-new"/>
-        <env name="NEO4J_VERSION" value="4.1"/>
+        <env name="NEO4J_HOST" value="neo4j-legacy"/>
+        <env name="NEO4J_VERSION" value="3.5"/>
     </php>
 </phpunit>

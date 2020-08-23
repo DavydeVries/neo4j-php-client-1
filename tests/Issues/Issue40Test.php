@@ -31,6 +31,8 @@ class Issue40Test extends IntegrationTestCase
     CREATE (n)-[:CARD_OF {order:0}]->(s)
     RETURN n';
 
+        $query = $this->modernizeQueryIfNeeded($query);
+
         $parameters = [
             'brief_id' => 123,
             'data' => [

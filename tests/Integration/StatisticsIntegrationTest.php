@@ -59,13 +59,15 @@ class StatisticsIntegrationTest extends IntegrationTestCase
      */
     public function testNodesCreatedWithBolt()
     {
-        $this->emptyDb();
-        $result = $this->client->run('MATCH (n) RETURN count(n)', [], null, 'bolt');
-        $this->assertInstanceOf(StatementStatisticsInterface::class, $result->summarize()->updateStatistics());
+        if (!$this->isV4OrUp()) {
+            $this->emptyDb();
+            $result = $this->client->run('MATCH (n) RETURN count(n)', [], null, 'bolt');
+            $this->assertInstanceOf(StatementStatisticsInterface::class, $result->summarize()->updateStatistics());
 
-        $tx = $this->client->transaction('bolt');
-        $result = $tx->run('MATCH (n) RETURN count(n)');
-        $tx->commit();
-        $this->assertInstanceOf(StatementStatisticsInterface::class, $result->summarize()->updateStatistics());
+            $tx = $this->client->transaction('bolt');
+            $result = $tx->run('MATCH (n) RETURN count(n)');
+            $tx->commit();
+            $this->assertInstanceOf(StatementStatisticsInterface::class, $result->summarize()->updateStatistics());
+        }
     }
 }

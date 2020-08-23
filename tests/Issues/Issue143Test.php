@@ -13,7 +13,7 @@ use GraphAware\Neo4j\Client\Tests\Integration\IntegrationTestCase;
  */
 class Issue143Test extends IntegrationTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $connections = array_merge($this->getConnections(), $this->getAdditionalConnections());
 
@@ -21,7 +21,7 @@ class Issue143Test extends IntegrationTestCase
             ->addConnection('a', $connections['non-exist'])
             ->addConnection('http', $connections['http'])
             ->addConnection('bolt', $connections['bolt'])
-            ->setMaster('bolt')
+            ->setMaster('http')
             ->build();
     }
 

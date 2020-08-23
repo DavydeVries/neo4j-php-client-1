@@ -45,24 +45,28 @@ class CombinedStatisticsIntegrationTest extends IntegrationTestCase
 
     public function testContainsUpdatesIsMergedWithBolt()
     {
-        $this->emptyDb();
-        $stack = Stack::create(null, 'bolt');
-        $stack->push('CREATE (n:Node)');
-        $stack->push('MATCH (n) RETURN n');
-        $results = $this->client->runStack($stack);
+        if (!$this->isV4OrUp()) {
+            $this->emptyDb();
+            $stack = Stack::create(null, 'bolt');
+            $stack->push('CREATE (n:Node)');
+            $stack->push('MATCH (n) RETURN n');
+            $results = $this->client->runStack($stack);
 
-        $this->assertTrue($results->updateStatistics()->containsUpdates());
+            $this->assertTrue($results->updateStatistics()->containsUpdates());
+        }
     }
 
     public function testStatsAreMergedWithBolt()
     {
-        $this->emptyDb();
-        $stack = Stack::create(null, 'bolt');
-        $stack->push('CREATE (n:Node)');
-        $stack->push('CREATE (n:Node)');
-        $results = $this->client->runStack($stack);
+        if (!$this->isV4OrUp()) {
+            $this->emptyDb();
+            $stack = Stack::create(null, 'bolt');
+            $stack->push('CREATE (n:Node)');
+            $stack->push('CREATE (n:Node)');
+            $results = $this->client->runStack($stack);
 
-        $this->assertEquals(2, $results->updateStatistics()->nodesCreated());
-        $this->assertEquals(2, $results->updateStatistics()->labelsAdded());
+            $this->assertEquals(2, $results->updateStatistics()->nodesCreated());
+            $this->assertEquals(2, $results->updateStatistics()->labelsAdded());
+        }
     }
 }

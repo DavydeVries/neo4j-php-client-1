@@ -13,11 +13,12 @@ namespace GraphAware\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Cypher\Statement;
 use GraphAware\Common\Driver\PipelineInterface;
+use GraphAware\Common\Driver\SessionInterface;
 
 class Pipeline implements PipelineInterface
 {
     /**
-     * @var Session
+     * @var SessionInterface
      */
     protected $session;
 
@@ -26,10 +27,7 @@ class Pipeline implements PipelineInterface
      */
     protected $statements = [];
 
-    /**
-     * @param Session $session
-     */
-    public function __construct(Session $session)
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
     }
