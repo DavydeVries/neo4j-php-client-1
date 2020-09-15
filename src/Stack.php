@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client;
+namespace Laudis\Neo4j\Client;
 
 use GraphAware\Common\Cypher\Statement;
 

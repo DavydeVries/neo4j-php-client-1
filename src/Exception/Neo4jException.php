@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Exception;
+namespace Laudis\Neo4j\Client\Exception;
 
 class Neo4jException extends \Exception implements Neo4jExceptionInterface
 {

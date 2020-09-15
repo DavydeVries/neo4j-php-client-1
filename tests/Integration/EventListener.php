@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Integration;
+namespace Laudis\Neo4j\Client\Tests\Integration;
 
-use GraphAware\Neo4j\Client\Event\FailureEvent;
-use GraphAware\Neo4j\Client\Event\PostRunEvent;
-use GraphAware\Neo4j\Client\Event\PreRunEvent;
+use Laudis\Neo4j\Client\Event\FailureEvent;
+use Laudis\Neo4j\Client\Event\PostRunEvent;
+use Laudis\Neo4j\Client\Event\PreRunEvent;
 
 class EventListener
 {

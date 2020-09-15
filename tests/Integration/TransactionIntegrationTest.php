@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Integration;
+namespace Laudis\Neo4j\Client\Tests\Integration;
 
 use GraphAware\Bolt\Exception\MessageFailureException;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface;
-use GraphAware\Neo4j\Client\HttpDriver\Transaction;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface;
+use Laudis\Neo4j\Client\HttpDriver\Transaction;
 
 /**
  * Class TransactionIntegrationTest.

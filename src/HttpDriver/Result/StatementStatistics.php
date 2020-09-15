@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\HttpDriver\Result;
+namespace Laudis\Neo4j\Client\HttpDriver\Result;
 
 use GraphAware\Common\Result\StatementStatisticsInterface;
 

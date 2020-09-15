@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Formatter\Type;
+namespace Laudis\Neo4j\Client\Formatter\Type;
 
 use GraphAware\Common\Type\MapAccessor;
 

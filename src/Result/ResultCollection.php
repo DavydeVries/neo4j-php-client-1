@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Result;
+namespace Laudis\Neo4j\Client\Result;
 
 use GraphAware\Common\Result\RecordCursorInterface;
 use GraphAware\Common\Result\ResultCollection as BaseResultCollection;

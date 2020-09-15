@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Integration;
+namespace Laudis\Neo4j\Client\Tests\Integration;
 
 use GraphAware\Bolt\Exception\HandshakeException;
-use GraphAware\Neo4j\Client\ClientBuilder;
-use GraphAware\Neo4j\Client\ClientInterface;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\ClientBuilder;
+use Laudis\Neo4j\Client\ClientInterface;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
 use PHPUnit\Framework\TestCase;
 
 final class BoltProtocolTest extends TestCase

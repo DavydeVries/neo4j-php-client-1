@@ -1,13 +1,13 @@
 <?php
 
-namespace GraphAware\Neo4j\Client\Tests\Issues;
+namespace Laudis\Neo4j\Client\Tests\Issues;
 
-use GraphAware\Neo4j\Client\ClientBuilder;
-use GraphAware\Neo4j\Client\Tests\Integration\IntegrationTestCase;
+use Laudis\Neo4j\Client\ClientBuilder;
+use Laudis\Neo4j\Client\Tests\Integration\IntegrationTestCase;
 
 /**
  * Class Issue143Test
- * @package GraphAware\Neo4j\Client\Tests\Issues
+ * @package Laudis\Neo4j\Client\Tests\Issues
  *
  * @group t143
  */

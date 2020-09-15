@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Event;
+namespace Laudis\Neo4j\Client\Event;
 
-use GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface;
+use Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 class FailureEvent extends Event

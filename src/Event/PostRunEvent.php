@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Event;
+namespace Laudis\Neo4j\Client\Event;
 
 use GraphAware\Common\Result\ResultCollection;
 use Symfony\Component\EventDispatcher\Event;

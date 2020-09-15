@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client;
+namespace Laudis\Neo4j\Client;
 
 use GraphAware\Common\Cypher\Statement;
 use GraphAware\Common\Result\Record;
-use GraphAware\Neo4j\Client\Connection\ConnectionManager;
-use GraphAware\Neo4j\Client\Event\FailureEvent;
-use GraphAware\Neo4j\Client\Event\PostRunEvent;
-use GraphAware\Neo4j\Client\Event\PreRunEvent;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Result\ResultCollection;
-use GraphAware\Neo4j\Client\Schema\Label;
-use GraphAware\Neo4j\Client\Transaction\Transaction;
+use Laudis\Neo4j\Client\Connection\ConnectionManager;
+use Laudis\Neo4j\Client\Event\FailureEvent;
+use Laudis\Neo4j\Client\Event\PostRunEvent;
+use Laudis\Neo4j\Client\Event\PreRunEvent;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Result\ResultCollection;
+use Laudis\Neo4j\Client\Schema\Label;
+use Laudis\Neo4j\Client\Transaction\Transaction;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -52,7 +52,7 @@ class Client implements ClientInterface
      * @param null|string $tag
      * @param null|string $connectionAlias
      *
-     * @throws \GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface
+     * @throws \Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface
      *
      * @return \GraphAware\Common\Result\Result|null
      */

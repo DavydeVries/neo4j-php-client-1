@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\HttpDriver;
+namespace Laudis\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Cypher\Statement;
 use GraphAware\Common\Driver\PipelineInterface;

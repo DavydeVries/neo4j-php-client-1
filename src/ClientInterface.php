@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client;
+namespace Laudis\Neo4j\Client;
 
 use GraphAware\Common\Result\AbstractRecordCursor;
-use GraphAware\Neo4j\Client\Connection\ConnectionManager;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Result\ResultCollection;
-use GraphAware\Neo4j\Client\Schema\Label;
-use GraphAware\Neo4j\Client\Transaction\Transaction;
+use Laudis\Neo4j\Client\Connection\ConnectionManager;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Result\ResultCollection;
+use Laudis\Neo4j\Client\Schema\Label;
+use Laudis\Neo4j\Client\Transaction\Transaction;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -32,7 +32,7 @@ interface ClientInterface
      * @param null|string $tag
      * @param null|string $connectionAlias
      *
-     * @throws \GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface
+     * @throws \Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface
      *
      * @return \GraphAware\Common\Result\Result
      */

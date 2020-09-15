@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\HttpDriver;
+namespace Laudis\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Driver\PipelineInterface;
 use GraphAware\Common\Driver\SessionInterface;
 use GraphAware\Common\Result\ResultCollection;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Formatter\ResponseFormatter;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use Http\Client\Exception;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
@@ -81,7 +81,7 @@ class SessionApi4 implements SessionInterface
      * @throws Neo4jException
      * @throws Exception
      */
-    public function flush(PipelineInterface $pipeline): \GraphAware\Neo4j\Client\Result\ResultCollection
+    public function flush(PipelineInterface $pipeline): \Laudis\Neo4j\Client\Result\ResultCollection
     {
         if (!$pipeline instanceof Pipeline) {
             throw new RuntimeException('Pipeline must be an instance of: '.Pipeline::class);

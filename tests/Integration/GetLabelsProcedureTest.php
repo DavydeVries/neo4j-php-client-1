@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests;
+namespace Laudis\Neo4j\Client\Tests;
 
-use GraphAware\Neo4j\Client\Schema\Label;
-use GraphAware\Neo4j\Client\Tests\Integration\IntegrationTestCase;
+use Laudis\Neo4j\Client\Schema\Label;
+use Laudis\Neo4j\Client\Tests\Integration\IntegrationTestCase;
 
 /**
  * Class GetLabelsProcedureTest.

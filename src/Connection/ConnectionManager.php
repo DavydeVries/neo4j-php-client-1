@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Connection;
+namespace Laudis\Neo4j\Client\Connection;
 
 use GraphAware\Common\Connection\BaseConfiguration;
 
@@ -47,7 +47,7 @@ class ConnectionManager
     /**
      * @param null $alias
      *
-     * @return \GraphAware\Neo4j\Client\Connection\Connection
+     * @return \Laudis\Neo4j\Client\Connection\Connection
      */
     public function getConnection($alias = null)
     {

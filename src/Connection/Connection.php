@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Connection;
+namespace Laudis\Neo4j\Client\Connection;
 
 use GraphAware\Bolt\Configuration as BoltConfiguration;
 use GraphAware\Bolt\Driver as BoltDriver;
@@ -17,9 +17,9 @@ use GraphAware\Bolt\Exception\MessageFailureException;
 use GraphAware\Bolt\GraphDatabase as BoltGraphDB;
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Cypher\Statement;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\HttpDriver\GraphDatabase as HttpGraphDB;
-use GraphAware\Neo4j\Client\StackInterface;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\HttpDriver\GraphDatabase as HttpGraphDB;
+use Laudis\Neo4j\Client\StackInterface;
 
 class Connection
 {

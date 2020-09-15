@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client;
+namespace Laudis\Neo4j\Client;
 
-use GraphAware\Neo4j\Client\HttpDriver\Driver;
+use Laudis\Neo4j\Client\HttpDriver\Driver;
 
 class Config
 {

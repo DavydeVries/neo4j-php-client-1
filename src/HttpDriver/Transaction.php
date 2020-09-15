@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\HttpDriver;
+namespace Laudis\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Cypher\Statement;
 use GraphAware\Common\Driver\SessionInterface;
 use GraphAware\Common\Transaction\TransactionInterface;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface;
 
 class Transaction implements TransactionInterface
 {

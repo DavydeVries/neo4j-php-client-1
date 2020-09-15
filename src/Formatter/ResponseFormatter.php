@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Formatter;
+namespace Laudis\Neo4j\Client\Formatter;
 
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Result\ResultCollection;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Result\ResultCollection;
 
 class ResponseFormatter
 {

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Integration;
+namespace Laudis\Neo4j\Client\Tests\Integration;
 
 use GraphAware\Bolt\Driver as BoltDriver;
-use GraphAware\Neo4j\Client\Client;
-use GraphAware\Neo4j\Client\ClientBuilder;
-use GraphAware\Neo4j\Client\Connection\Connection;
-use GraphAware\Neo4j\Client\Connection\ConnectionManager;
-use GraphAware\Neo4j\Client\HttpDriver\Driver as HttpDriver;
+use Laudis\Neo4j\Client\Client;
+use Laudis\Neo4j\Client\ClientBuilder;
+use Laudis\Neo4j\Client\Connection\Connection;
+use Laudis\Neo4j\Client\Connection\ConnectionManager;
+use Laudis\Neo4j\Client\HttpDriver\Driver as HttpDriver;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophet;

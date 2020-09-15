@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Integration;
+namespace Laudis\Neo4j\Client\Tests\Integration;
 
 use GraphAware\Bolt\Result\Type\Node as BoltNode;
 use GraphAware\Bolt\Result\Type\Relationship as BoltRelationship;
 use GraphAware\Common\Type\Node;
 use GraphAware\Common\Type\Path;
-use GraphAware\Neo4j\Client\Formatter\Type\Node as HttpNode;
-use GraphAware\Neo4j\Client\Formatter\Type\Relationship as HttpRelationship;
+use Laudis\Neo4j\Client\Formatter\Type\Node as HttpNode;
+use Laudis\Neo4j\Client\Formatter\Type\Relationship as HttpRelationship;
 
 class CypherIntegrationTest extends IntegrationTestCase
 {

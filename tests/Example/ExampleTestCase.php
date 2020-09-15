@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Example;
+namespace Laudis\Neo4j\Client\Tests\Example;
 
 use GraphAware\Common\Result\Result;
-use GraphAware\Neo4j\Client\ClientBuilder;
-use GraphAware\Neo4j\Client\ClientInterface;
+use Laudis\Neo4j\Client\ClientBuilder;
+use Laudis\Neo4j\Client\ClientInterface;
 use PHPUnit\Framework\TestCase;
 
 abstract class ExampleTestCase extends TestCase

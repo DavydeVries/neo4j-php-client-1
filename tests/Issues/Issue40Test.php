@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Issues;
+namespace Laudis\Neo4j\Client\Tests\Issues;
 
-use GraphAware\Neo4j\Client\Tests\Integration\IntegrationTestCase;
+use Laudis\Neo4j\Client\Tests\Integration\IntegrationTestCase;
 
 /**
  * Class Issue40Test.

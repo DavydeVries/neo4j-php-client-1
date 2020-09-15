@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Formatter;
+namespace Laudis\Neo4j\Client\Formatter;
 
 class Response
 {

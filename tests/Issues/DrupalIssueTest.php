@@ -1,12 +1,12 @@
 <?php
 
-namespace GraphAware\Neo4j\Client\Tests;
+namespace Laudis\Neo4j\Client\Tests;
 
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class DrupalIssueTest
- * @package GraphAware\Neo4j\Client\Tests
+ * @package Laudis\Neo4j\Client\Tests
  *
  * @group drupal
  */

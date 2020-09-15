@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\HttpDriver;
+namespace Laudis\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Driver\ConfigInterface;
 use GraphAware\Common\Driver\DriverInterface;
 use GraphAware\Common\Driver\SessionInterface;
-use GraphAware\Neo4j\Client\Formatter\ResponseFormatter;
+use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use Http\Adapter\Guzzle6\Client;
 use Http\Client\Exception;
 use Http\Client\HttpClient;

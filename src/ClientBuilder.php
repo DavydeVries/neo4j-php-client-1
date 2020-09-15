@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client;
+namespace Laudis\Neo4j\Client;
 
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Driver\ConfigInterface;
-use GraphAware\Neo4j\Client\Connection\ConnectionManager;
-use GraphAware\Neo4j\Client\HttpDriver\Configuration;
+use Laudis\Neo4j\Client\Connection\ConnectionManager;
+use Laudis\Neo4j\Client\HttpDriver\Configuration;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ClientBuilder

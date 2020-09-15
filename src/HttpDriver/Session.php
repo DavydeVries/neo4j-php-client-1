@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\HttpDriver;
+namespace Laudis\Neo4j\Client\HttpDriver;
 
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Driver\ConfigInterface;
 use GraphAware\Common\Driver\PipelineInterface;
 use GraphAware\Common\Driver\SessionInterface;
 use GraphAware\Common\Transaction\TransactionInterface;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Formatter\ResponseFormatter;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Adapter\Guzzle6\Client;
 use Http\Client\Common\Plugin\ErrorPlugin;
@@ -134,7 +134,7 @@ class Session implements SessionInterface
     /**
      * @param Pipeline $pipeline
      *
-     * @throws \GraphAware\Neo4j\Client\Exception\Neo4jException
+     * @throws \Laudis\Neo4j\Client\Exception\Neo4jException
      *
      * @return \GraphAware\Common\Result\ResultCollection
      */

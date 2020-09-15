@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Transaction;
+namespace Laudis\Neo4j\Client\Transaction;
 
 use GraphAware\Bolt\Exception\MessageFailureException;
 use GraphAware\Common\Cypher\Statement;
 use GraphAware\Common\Result\Result;
 use GraphAware\Common\Transaction\TransactionInterface;
-use GraphAware\Neo4j\Client\Event\FailureEvent;
-use GraphAware\Neo4j\Client\Event\PostRunEvent;
-use GraphAware\Neo4j\Client\Event\PreRunEvent;
-use GraphAware\Neo4j\Client\Exception\Neo4jException;
-use GraphAware\Neo4j\Client\Neo4jClientEvents;
-use GraphAware\Neo4j\Client\Result\ResultCollection;
-use GraphAware\Neo4j\Client\StackInterface;
+use Laudis\Neo4j\Client\Event\FailureEvent;
+use Laudis\Neo4j\Client\Event\PostRunEvent;
+use Laudis\Neo4j\Client\Event\PreRunEvent;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Neo4jClientEvents;
+use Laudis\Neo4j\Client\Result\ResultCollection;
+use Laudis\Neo4j\Client\StackInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class Transaction
@@ -100,7 +100,7 @@ class Transaction
     /**
      * Push a statements Stack to the queue, without actually sending it.
      *
-     * @param \GraphAware\Neo4j\Client\StackInterface $stack
+     * @param \Laudis\Neo4j\Client\StackInterface $stack
      */
     public function pushStack(StackInterface $stack)
     {

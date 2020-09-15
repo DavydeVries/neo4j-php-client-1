@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Schema;
+namespace Laudis\Neo4j\Client\Schema;
 
 final class Label
 {

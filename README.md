@@ -1,12 +1,5 @@
 # GraphAware Neo4j PHP Client
 
-## An Enterprise Grade Client for Neo4j
-
-[![Build Status](https://travis-ci.org/graphaware/neo4j-php-client.svg?branch=master)](https://travis-ci.org/graphaware/neo4j-php-client)
-[![Latest Stable Version](https://poser.pugx.org/graphaware/neo4j-php-client/v/stable.svg)](https://packagist.org/packages/graphaware/neo4j-php-client)
-[![Total Downloads](https://poser.pugx.org/graphaware/neo4j-php-client/downloads.svg)](https://packagist.org/packages/graphaware/neo4j-php-client)
-[![License](https://poser.pugx.org/graphaware/neo4j-php-client/license.svg)](https://packagist.org/packages/graphaware/neo4j-php-client)
-
 ## Introduction
 
 Neo4j-PHP-Client is the most advanced and flexible [Neo4j](http://neo4j.com) Client for PHP.
@@ -56,12 +49,8 @@ Neo4j is a transactional, open-source graph database. A graph database manages d
 
 You can:
 
- * [Ask a question on StackOverflow](http://stackoverflow.com/questions/ask?tags=graphaware,php,neo4j)
- * For bugs, please feel free to create a [new issue on GitHub](https://github.com/graphaware/neo4j-php-client/issues/new)
-
-### Implementations
-
-* [Symfony Framework Bundle](https://github.com/neo4j-contrib/neo4j-symfony)
+ * [Ask a question on StackOverflow](http://stackoverflow.com/questions/ask?tags=php,neo4j)
+ * For bugs, please feel free to create a [new issue on GitHub](https://github.com/transistive/neo4j-php-client/issues/new)
 
 ## Installation and basic usage
 
@@ -70,7 +59,7 @@ You can:
 Add the library to your composer dependencies :
 
 ```bash
-composer require "graphaware/neo4j-php-client:^4.0"
+composer require laudis/neo4j-php-client
 ```
 
 Require the composer autoloader, configure your connection by providing a connection alias and your connection settings :
@@ -80,11 +69,11 @@ Require the composer autoloader, configure your connection by providing a connec
 
 require_once 'vendor/autoload.php';
 
-use GraphAware\Neo4j\Client\ClientBuilder;
+use Laudis\Neo4j\Client\ClientBuilder;
 
 $client = ClientBuilder::create()
     ->addConnection('default', 'http://neo4j:password@localhost:7474') // Example for HTTP connection configuration (port is optional)
-    ->addConnection('bolt', 'bolt://neo4j:password@localhost:7687') // Example for BOLT connection configuration (port is optional)
+    ->addConnection('backup', 'http://neo4j:password@localhost:7475') // Example for backup http configuration
     ->build();
 ```
 
@@ -415,9 +404,9 @@ Let's assume a environment with 3 neo4j nodes :
 
 ```php
 $client = ClientBuilder::create()
-    ->addConnection('node1', 'bolt://10.0.0.1')
-    ->addConnection('node2', 'bolt://10.0.0.2')
-    ->addConnection('node3', 'bolt://10.0.0.3')
+    ->addConnection('node1', 'http://10.0.0.1')
+    ->addConnection('node2', 'http://10.0.0.2')
+    ->addConnection('node3', 'http://10.0.0.3')
     ->setMaster('node1')
     ->build();
 ```
@@ -514,7 +503,7 @@ $options = [
 ];
 $httpClient = new Client(null, null, $options);
 
-$config = \GraphAware\Neo4j\Client\HttpDriver\Configuration::create($httpClient);
+$config = \Laudis\Neo4j\Client\HttpDriver\Configuration::create($httpClient);
 $client = ClientBuilder::create()
     ->addConnection('default', 'http://neo4j:password@localhost:7474', $config)
     ->build();

@@ -1,5 +1,5 @@
 {
-    "name": "graphaware/neo4j-php-client",
+    "name": "laudis/neo4j-php-client",
     "type": "library",
     "description": "Neo4j-PHP-Client is the most advanced PHP Client for Neo4j",
     "keywords": [
@@ -12,12 +12,11 @@
         "http",
         "high-availability"
     ],
-    "homepage": "http://graphaware.com",
     "license": "MIT",
     "authors": [
         {
-            "name": "Christophe Willemsen",
-            "email": "christophe@graphaware.com"
+            "name": "Ghlen Nagels",
+            "email": "ghlen@pm.me"
         }
     ],
     "require": {
@@ -47,12 +46,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GraphAware\\Neo4j\\Client\\": "src/"
+            "Laudis\\Neo4j\\Client\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GraphAware\\Neo4j\\Client\\Tests\\": "tests/"
+            "Laudis\\Neo4j\\Client\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable"

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Unit\Stub;
+namespace Laudis\Neo4j\Client\Tests\Unit\Stub;
 
 use GraphAware\Common\Driver\DriverInterface;
 

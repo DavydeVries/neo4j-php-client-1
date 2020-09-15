@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Unit\Connection;
+namespace Laudis\Neo4j\Client\Tests\Unit\Connection;
 
-use GraphAware\Neo4j\Client\Connection\Connection;
-use GraphAware\Neo4j\Client\HttpDriver\Driver as HttpDriver;
+use Laudis\Neo4j\Client\Connection\Connection;
+use Laudis\Neo4j\Client\HttpDriver\Driver as HttpDriver;
 use PHPUnit\Framework\TestCase;
 
 /**

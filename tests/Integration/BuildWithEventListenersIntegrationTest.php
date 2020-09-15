@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace GraphAware\Neo4j\Client\Tests\Integration;
+namespace Laudis\Neo4j\Client\Tests\Integration;
 
-use GraphAware\Neo4j\Client\ClientBuilder;
-use GraphAware\Neo4j\Client\Exception\Neo4jExceptionInterface;
-use GraphAware\Neo4j\Client\Neo4jClientEvents;
-use GraphAware\Neo4j\Client\Tests\Example\ExampleTestCase;
+use Laudis\Neo4j\Client\ClientBuilder;
+use Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface;
+use Laudis\Neo4j\Client\Neo4jClientEvents;
+use Laudis\Neo4j\Client\Tests\Example\ExampleTestCase;
 
 /**
  * Class BuildWithEventListenersIntegrationTest.
