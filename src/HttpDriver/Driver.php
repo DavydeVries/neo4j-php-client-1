@@ -11,17 +11,19 @@
 
 namespace Laudis\Neo4j\Client\HttpDriver;
 
+use function explode;
 use GraphAware\Common\Connection\BaseConfiguration;
 use GraphAware\Common\Driver\ConfigInterface;
 use GraphAware\Common\Driver\DriverInterface;
 use GraphAware\Common\Driver\SessionInterface;
-use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use Http\Adapter\Guzzle6\Client;
 use Http\Client\Exception;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
 use JsonException;
+use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use RuntimeException;
+use function str_replace;
 
 class Driver implements DriverInterface
 {
@@ -67,16 +69,18 @@ class Driver implements DriverInterface
         if (null === $this->decidedVersion) {
             $version = $this->discovery($client, $factory);
             $this->decidedVersion = $version['neo4j_version'] ?? '3.5';
-            $this->transaction = str_replace('{databaseName}', getenv('NEO4J_DATABASE'), $version['transaction'] ?? '');
+            $this->transaction = str_replace('{databaseName}', $this->config->getValue('database', getenv('NEO4J_DATABASE')), $version['transaction'] ?? '');
         }
 
         if ($this->isV4OrUp($this->decidedVersion)) {
+            $userPasswordCombo = str_replace('http://', '', explode('@', $this->uri, 2)[0]);
+
             return new SessionApi4(
                 new ResponseFormatter(),
                 $this->config->getValue('request_factory'),
                 $client,
                 $this->transaction,
-                'Basic '.base64_encode(getenv('NEO4J_USER').':'.getenv('NEO4J_PASSWORD'))
+                'Basic '.base64_encode($userPasswordCombo)
             );
         }
 
