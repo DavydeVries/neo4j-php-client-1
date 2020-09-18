@@ -28,6 +28,8 @@ use stdClass;
 
 class SessionApi4 implements SessionInterface
 {
+    private const HTTP_NO_CONTENT = 204;
+    private const HTTP_ERROR_CODE_ZONE = 500;
     private ResponseFormatter $responseFormatter;
     private RequestFactory $requestFactory;
     private string $transactionEndpoint;
@@ -230,10 +232,14 @@ class SessionApi4 implements SessionInterface
      */
     private function throwIfErrorIsReceived(ResponseInterface $response): array
     {
+        if ($response->getStatusCode() === self::HTTP_NO_CONTENT) {
+            return [];
+        }
+
         try {
             $data = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $e) {
-            if ($response->getStatusCode() >= 500) {
+            if ($response->getStatusCode() >= self::HTTP_ERROR_CODE_ZONE) {
                 throw new Neo4jException('Server error');
             }
             throw new Neo4jException('Invalid json format');
