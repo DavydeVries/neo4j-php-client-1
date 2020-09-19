@@ -14,13 +14,13 @@ namespace Laudis\Neo4j\Client\HttpDriver;
 use GraphAware\Common\Driver\PipelineInterface;
 use GraphAware\Common\Driver\SessionInterface;
 use GraphAware\Common\Result\ResultCollection;
-use Laudis\Neo4j\Client\Exception\Neo4jException;
-use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use Http\Client\Exception;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
 use JsonException;
+use Laudis\Neo4j\Client\Exception\Neo4jException;
+use Laudis\Neo4j\Client\Formatter\ResponseFormatter;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
@@ -30,6 +30,7 @@ class SessionApi4 implements SessionInterface
 {
     private const HTTP_NO_CONTENT = 204;
     private const HTTP_ERROR_CODE_ZONE = 500;
+    private const HTTP_NOT_FOUND = 404;
     private ResponseFormatter $responseFormatter;
     private RequestFactory $requestFactory;
     private string $transactionEndpoint;
@@ -232,7 +233,7 @@ class SessionApi4 implements SessionInterface
      */
     private function throwIfErrorIsReceived(ResponseInterface $response): array
     {
-        if ($response->getStatusCode() === self::HTTP_NO_CONTENT) {
+        if (self::HTTP_NO_CONTENT === $response->getStatusCode()) {
             return [];
         }
 
@@ -241,6 +242,9 @@ class SessionApi4 implements SessionInterface
         } catch (JsonException $e) {
             if ($response->getStatusCode() >= self::HTTP_ERROR_CODE_ZONE) {
                 throw new Neo4jException('Server error');
+            }
+            if (self::HTTP_NOT_FOUND === $response->getStatusCode()) {
+                throw new Neo4jException('Could not find configured endpoint');
             }
             throw new Neo4jException('Invalid json format');
         }

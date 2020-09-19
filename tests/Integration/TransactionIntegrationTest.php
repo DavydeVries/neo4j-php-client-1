@@ -12,8 +12,10 @@
 namespace Laudis\Neo4j\Client\Tests\Integration;
 
 use GraphAware\Bolt\Exception\MessageFailureException;
+use Laudis\Neo4j\Client\ClientBuilder;
 use Laudis\Neo4j\Client\Exception\Neo4jException;
 use Laudis\Neo4j\Client\Exception\Neo4jExceptionInterface;
+use Laudis\Neo4j\Client\HttpDriver\Configuration;
 use Laudis\Neo4j\Client\HttpDriver\Transaction;
 
 /**
@@ -23,6 +25,28 @@ use Laudis\Neo4j\Client\HttpDriver\Transaction;
  */
 class TransactionIntegrationTest extends IntegrationTestCase
 {
+    public function testInvalidConfiguredDatabase(): void
+    {
+        if ($this->isV4OrUp()) {
+            $this->emptyDb();
+            $url = sprintf(
+                'http://%s:%s@%s:%s',
+                getenv('NEO4J_USER'),
+                getenv('NEO4J_PASSWORD'),
+                getenv('NEO4J_HOST'),
+                getenv('NEO4J_PORT')
+            );
+            $client = ClientBuilder::create()
+                ->addConnection('http', $url, Configuration::create()->setValue('database', false))
+                ->build();
+
+            $this->expectException(Neo4jException::class);
+            $this->expectExceptionMessage('Could not find configured endpoint');
+
+            $client->run('MATCH (x) RETURN x');
+        }
+    }
+
     public function testTransactionIsCommittedWithHttp()
     {
         $this->emptyDb();
