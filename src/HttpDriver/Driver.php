@@ -69,11 +69,7 @@ class Driver implements DriverInterface
         if (null === $this->decidedVersion) {
             $version = $this->discovery($client, $factory);
             $this->decidedVersion = $version['neo4j_version'] ?? '3.5';
-            $defaultDb = getenv('NEO4J_DATABASE');
-            if (false === $defaultDb) {
-                $defaultDb = 'neo4j';
-            }
-            $this->transaction = str_replace('{databaseName}', $this->config->getValue('database', $defaultDb), $version['transaction'] ?? '');
+            $this->transaction = str_replace('{databaseName}', $this->config->getValue('database', 'neo4j'), $version['transaction'] ?? '');
         }
 
         if ($this->isV4OrUp($this->decidedVersion)) {
