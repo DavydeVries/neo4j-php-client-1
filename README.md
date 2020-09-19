@@ -81,6 +81,19 @@ You're now ready to connect to your database.
 
 NB: The build method will process configuration settings and return you a `Client` instance.
 
+### Connecting to a specific database
+
+In the case of a connection to a database of version 4 or up, the default database name will be *neo4j*.
+
+This can be overridden in the configuration:
+
+```php
+$client = ClientBuilder::create()
+                ->addConnection('default', 'http://neo4j:password@localhost:7474', Configuration::create()->setValue('database', false))
+                ->build();
+```
+
+
 ### Basic Usage
 
 #### Sending a Cypher Query
