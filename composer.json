@@ -25,7 +25,7 @@
       "ext-mbstring": "*",
       "graphaware/neo4j-common": "^3.4",
       "graphaware/neo4j-bolt": "^1.5",
-      "symfony/event-dispatcher": "^5.1",
+      "symfony/event-dispatcher": "v5.1.7",
       "myclabs/php-enum": "^1.4",
       "php-http/httplug": "^1.0",
       "php-http/message-factory": "^1.0",
